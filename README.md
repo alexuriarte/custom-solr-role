@@ -1,7 +1,7 @@
 Scalr Solr Tutorial
 ===================
 
-This tutorial deploys Solr on infrastructure managed by Scalr. 
+This tutorial deploys Solr on infrastructure managed by [Scalr][0]. Follow instructions on the [Scalr Wiki][1].
 
 The test data is a list of Cities, and can be searched using Solr once it is
 deployed.
@@ -18,3 +18,7 @@ They are found at the following locations:
     
     EXAMPLE_DATA
     https://s3.amazonaws.com/scalr-tutorials/solr/example-data/cities.xml
+
+
+  [0]: http://www.scalr.com
+  [1]: https://scalr-wiki.atlassian.net/wiki/x/2yQb
