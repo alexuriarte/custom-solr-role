@@ -26,8 +26,6 @@ apt-get -y install curl
 
 CURL_OPTS="--fail --remote-name"
 
-echo "Deploying Scalr config from $SOLR_CONFIG_RESOURCE"
-
 if [ -z "$SOLR_CONFIG_RESOURCE" ];
 then
         echo You did not set the SOLR_CONFIG_RESOURCE Global Variable >&2
@@ -37,9 +35,9 @@ fi
 # Retrieve configuration files
 echo "Deploying Solr config from $SOLR_CONFIG_RESOURCE to $SOLR_CONF"
 cd $SOLR_CONF
-curl "$CURL_OPTS" "$SOLR_CONFIG_RESOURCE/schema.xml"
-curl "$CURL_OPTS" "$SOLR_CONFIG_RESOURCE/solrconfig.xml"
-curl "$CURL_OPTS" "$SOLR_CONFIG_RESOURCE/stopwords.xml"
+curl $CURL_OPTS "$SOLR_CONFIG_RESOURCE/schema.xml"
+curl $CURL_OPTS "$SOLR_CONFIG_RESOURCE/solrconfig.xml"
+curl $CURL_OPTS "$SOLR_CONFIG_RESOURCE/stopwords.txt"
 echo "Loaded Solr config"
 
 # Restart Solr with new config
