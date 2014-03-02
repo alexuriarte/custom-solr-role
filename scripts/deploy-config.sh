@@ -24,7 +24,7 @@ set -o nounset
 
 apt-get -y install curl
 
-CURL_OPTS="--silent --fail"
+CURL_OPTS="--fail --remote-name"
 
 echo "Deploying Scalr config from $SOLR_CONFIG_RESOURCE"
 
@@ -35,10 +35,11 @@ then
 fi
 
 # Retrieve configuration files
+echo "Deploying Solr config from $SOLR_CONFIG_RESOURCE to $SOLR_CONF"
 cd $SOLR_CONF
-curl $CURL_OPTS "$SOLR_CONFIG_RESOURCE/schema.xml" > schema.xml
-curl $CURL_OPTS "$SOLR_CONFIG_RESOURCE/solrconfig.xml" > solrconfig.xml
-curl $CURL_OPTS "$SOLR_CONFIG_RESOURCE/stopwords.txt" > stopwords.txt
+curl "$CURL_OPTS" "$SOLR_CONFIG_RESOURCE/schema.xml"
+curl "$CURL_OPTS" "$SOLR_CONFIG_RESOURCE/solrconfig.xml"
+curl "$CURL_OPTS" "$SOLR_CONFIG_RESOURCE/stopwords.xml"
 echo "Loaded Solr config"
 
 # Restart Solr with new config

@@ -21,7 +21,7 @@ command -v curl 2>&1 > /dev/null || install_pgrep
 : ${EXAMPLE_DATA:="https://raw.github.com/scalr-tutorials/custom-solr-role/master/resources/example-data/us-cities.xml"}
 
 SOLR_URL=http://$SOLR_HOST:$SOLR_PORT/solr/update
-TMP_FILE=/tmp/$$-solr-test.xml
+TMP_FILE=/tmp/$$-solr-test.xml  # Security is not a paramount concern here!
 
 CURL_OPTS="--fail"
 
@@ -43,8 +43,6 @@ fi
 echo "Downloading Solr data form: $EXAMPLE_DATA"
 cd $HOME
 curl $CURL_OPTS "$EXAMPLE_DATA" > $TMP_FILE
-
-cat $TMP_FILE
 
 echo "Uploading Solr data from: $TMP_FILE"
 echo
