@@ -11,15 +11,20 @@
 #                - solrconfig.xml
 #                - stopwords.txt
 
-# Crash eagerly
-set -e
+# Crash eagerly, exit on non-existent variables
+set -o errexit
+set -o nounset
+
+
+# Set defaults
+
+: ${TOMCAT_WEBROOT:="/var/lib/tomcat6/webapps/ROOT"}
+: ${SOLR_CONF:="/etc/solr/conf"}
+: ${SOLR_CONFIG_RESOURCE:=""}
 
 apt-get -y install curl
 
-TOMCAT_WEBROOT=/var/lib/tomcat6/webapps/ROOT
-SOLR_CONF=/etc/solr/conf
-
-CURL_OPTS="--silent"
+CURL_OPTS="--silent --fail"
 
 echo "Deploying Scalr config from $SOLR_CONFIG_RESOURCE"
 
@@ -34,8 +39,8 @@ cd $SOLR_CONF
 curl $CURL_OPTS "$SOLR_CONFIG_RESOURCE/schema.xml" > schema.xml
 curl $CURL_OPTS "$SOLR_CONFIG_RESOURCE/solrconfig.xml" > solrconfig.xml
 curl $CURL_OPTS "$SOLR_CONFIG_RESOURCE/stopwords.txt" > stopwords.txt
-echo Loaded Solr config
+echo "Loaded Solr config"
 
 # Restart Solr with new config
 service tomcat6 restart
-echo Reloaded Solr
+echo "Reloaded Solr"

@@ -14,7 +14,7 @@ Github does not allow retrieving large blobs.
 They are found at the following locations:
 
     SOLR_CONFIG_RESOURCE
-    https://s3.amazonaws.com/scalr-tutorials/solr/conf
+    https://raw.github.com/scalr-tutorials/custom-solr-role/master/resources/conf
     
     EXAMPLE_DATA
     https://s3.amazonaws.com/scalr-tutorials/solr/example-data/cities.xml
