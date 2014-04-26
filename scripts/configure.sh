@@ -24,7 +24,7 @@ set -o nounset
 
 apt-get -y install curl
 
-CURL_OPTS="--fail --remote-name"
+CURL_OPTS="--fail --remote-name --location"
 
 if [ -z "$SOLR_CONFIG_RESOURCE" ];
 then

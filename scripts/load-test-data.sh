@@ -23,7 +23,7 @@ command -v curl 2>&1 > /dev/null || install_pgrep
 SOLR_URL=http://$SOLR_HOST:$SOLR_PORT/solr/update
 TMP_FILE=/tmp/$$-solr-test.xml  # Security is not a paramount concern here!
 
-CURL_OPTS="--fail"
+CURL_OPTS="--fail --location"
 
 
 echo Starting upload script
