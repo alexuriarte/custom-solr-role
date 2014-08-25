@@ -9,7 +9,7 @@ set -o nounset
 install_curl () {
   apt-get -y install curl || echo "You need to install curl first"
 }
-command -v curl 2>&1 > /dev/null || install_pgrep
+command -v curl 2>&1 > /dev/null || install_curl
 
 
 # Default to Scalr provided values
@@ -23,7 +23,7 @@ command -v curl 2>&1 > /dev/null || install_pgrep
 SOLR_URL=http://$SOLR_HOST:$SOLR_PORT/solr/update
 TMP_FILE=/tmp/$$-solr-test.xml  # Security is not a paramount concern here!
 
-CURL_OPTS="--fail --location"
+CURL_OPTS="--fail --location --sslv3"
 
 
 echo Starting upload script
