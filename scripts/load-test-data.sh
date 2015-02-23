@@ -9,7 +9,7 @@ set -o nounset
 install_curl () {
   apt-get -y install curl || echo "You need to install curl first"
 }
-command -v curl 2>&1 > /dev/null || install_curl
+command -v curl > /dev/null 2>&1 || install_curl
 
 
 # Default to Scalr provided values
@@ -21,16 +21,16 @@ command -v curl 2>&1 > /dev/null || install_curl
 : ${EXAMPLE_DATA:="https://raw.github.com/scalr-tutorials/custom-solr-role/master/resources/example-data/us-cities.xml"}
 
 SOLR_URL=http://$SOLR_HOST:$SOLR_PORT/solr/update
-TMP_FILE=/tmp/$$-solr-test.xml  # Security is not a paramount concern here!
+TMP_FILE="/tmp/$$-solr-test.xml"  # Security is not a paramount concern here!
 
-CURL_OPTS="--fail --location --sslv3"
+CURL_OPTS="--fail --location"
 
 
-echo Starting upload script
+echo "Starting upload script"
 echo
-echo SOLR_HOST   :   $SOLR_HOST
-echo SOLR_PORT   :   $SOLR_PORT
-echo SOLR_URL    :   $SOLR_URL
+echo "SOLR_HOST   :   $SOLR_HOST"
+echo "SOLR_PORT   :   $SOLR_PORT"
+echo "SOLR_URL    :   $SOLR_URL"
 
 if [ -z "$SOLR_HOST" ] || [ -z "$SOLR_PORT" ];
 then
@@ -41,7 +41,7 @@ fi
 # Retrieve and load test data
 
 echo "Downloading Solr data form: $EXAMPLE_DATA"
-cd $HOME
+cd "$HOME"
 curl $CURL_OPTS "$EXAMPLE_DATA" > $TMP_FILE
 
 echo "Uploading Solr data from: $TMP_FILE"
